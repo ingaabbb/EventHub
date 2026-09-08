@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0 p-4">
+            <h3 class="fw-bold mb-4">{{ title }}</h3>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+
+                <div class="mb-3">
+                    {{ form.title.label(class="form-label") }}
+                    {{ form.title(class="form-control") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.category_id.label(class="form-label") }}
+                    {{ form.category_id(class="form-select") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.short_description.label(class="form-label") }}
+                    {{ form.short_description(class="form-control") }}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.long_description.label(class="form-label") }}
+                    {{ form.long_description(class="form-control", rows=4) }}
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form.location.label(class="form-label") }}
+                        {{ form.location(class="form-control") }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form.event_date.label(class="form-label") }}
+                        {{ form.event_date(class="form-control", type="datetime-local") }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form.price.label(class="form-label") }}
+                        {{ form.price(class="form-control") }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form.organizer.label(class="form-label") }}
+                        {{ form.organizer(class="form-control") }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-2">შენახვა</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

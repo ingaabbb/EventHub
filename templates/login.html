@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0 p-4">
+            <h3 class="fw-bold mb-3 text-center">ავტორიზაცია</h3>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {% if form.email.errors %}    <!-- თუ ემაილი ვერ გაივლის ვალიდაციას, მომხმარებელი დაინახავს შეტყობინებას -->
+                       {{ form.email(class="form-control is-invalid") }}
+                       <div class="invalid-feedback d-block">
+                            {% for error in form.email.errors %}
+                               <span>{{ error }}</span>
+                            {% endfor %}
+                       </div>
+                    {% else %}
+                        {{ form.email(class="form-control") }}
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    {{ form.password.label(class="form-label") }}
+                    {{ form.password(class="form-control") }}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">შესვლა</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

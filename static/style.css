@@ -1,0 +1,183 @@
+
+:root {
+    --bg-color: #F7F4EE;            
+    --card-bg: #FFFFFF;             
+    --accent-brown: #5C4033;        
+    --accent-brown-hover: #432E25; 
+    --icon-bg: #EFECE6;             
+    --border-color: #E5DFC8;       
+    --text-primary: #332922;        
+    --text-muted: #7A7067;          
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+
+.navbar {
+    background-color: var(--bg-color) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-brand {
+    color: var(--accent-brown) !important;
+    font-weight: 700;
+}
+
+.nav-link {
+    color: var(--text-primary) !important;
+}
+
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(92, 64, 51, 0.06);
+}
+
+
+.btn-primary, .btn-brown, 
+.btn-primary:hover, .btn-brown:hover,
+.btn-primary:focus, .btn-brown:focus,
+.btn-primary:active, .btn-brown:active {
+    background-color: var(--accent-brown) !important;
+    border-color: var(--accent-brown) !important;
+    color: #FFFFFF !important;
+    border-radius: 10px;
+    font-weight: 500;
+    padding: 8px 18px;
+    box-shadow: none !important; 
+    outline: none !important;
+}
+
+
+.btn-outline-custom {
+    background-color: #FFFFFF;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.btn-outline-custom:hover {
+    background-color: var(--icon-bg);
+    color: var(--accent-brown);
+}
+
+
+.category-btn {
+    background-color: #FFFFFF;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.category-btn:hover {
+    background-color: var(--icon-bg);
+    color: var(--accent-brown);
+    border-color: var(--border-color);
+}
+
+.category-btn:focus, .category-btn:active {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+
+.category-btn.active, .category-btn.active-category,
+.category-btn.active:focus, .category-btn.active:active {
+    background-color: var(--accent-brown) !important;
+    color: #FFFFFF !important;
+    border-color: var(--accent-brown) !important;
+    box-shadow: none !important;
+}
+
+
+.btn:focus, .form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(92, 64, 51, 0.2) !important;
+}
+
+
+
+.category-card {
+    background-color: #FFFFFF;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: block;
+}
+
+.category-card:hover {
+    border-color: var(--accent-brown);
+    color: var(--accent-brown);
+}
+
+.category-icon {
+    background-color: var(--icon-bg);
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px auto;
+    color: var(--accent-brown);
+    font-size: 20px;
+}
+
+
+.form-control, .form-select {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    padding: 10px 14px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--accent-brown);
+    box-shadow: 0 0 0 0.25rem rgba(92, 64, 51, 0.15);
+}
+
+
+.category-btn {
+    background-color: #FFFFFF;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px; 
+    padding: 6px 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.category-btn:hover {
+    background-color: var(--icon-bg);
+    color: var(--accent-brown);
+    border-color: var(--border-color);
+}
+
+
+.category-btn.active, .category-btn.active-category {
+    background-color: var(--accent-brown) !important;
+    color: #FFFFFF !important;
+    border-color: var(--accent-brown) !important;
+}

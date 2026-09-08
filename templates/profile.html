@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row g-4">
+        
+        <!-- მარცხენა მხარე -პროფილი და რედაქტირების ფორმა -->
+        <div class="{% if is_own_profile %}col-md-5{% else %}col-md-4 mx-auto{% endif %}">
+            <div class="card shadow-sm border-0 p-4">
+                
+                <!-- პროფილის ფოტო და მომხმარებლის შესახებ ინფრმაცია -->
+                <div class="text-center mb-3">
+                    {% if is_own_profile %}
+                        {% if current_user.profile_image %}
+                            <img src="{{ url_for('static', filename='pictures/' + current_user.profile_image) }}" 
+                                 class="rounded-circle img-thumbnail mb-2" 
+                                 style="width: 120px; height: 120px; object-fit: cover;">
+                        {% else %}
+                            <div class="rounded-circle profile-avatar-placeholder text-white d-inline-flex align-items-center justify-content-center fw-bold fs-2 mb-2" 
+                                 style="width: 120px; height: 120px;">
+                                {{ current_user.username[0]|upper }}    <!--როცა პროფილის ფოტო არ აქვს დამატებული მომხმარებელს, სახელის პირველ ასოს ვუჩვენებთ ფოტოს ნაცვლად-->
+                            </div>
+                        {% endif %}
+                        <h4 class="mb-0">{{ current_user.username }}</h4>
+                        <p class="text-muted small">{{ current_user.email }}</p>
+                    {% else %}
+                        {% if profile_user.profile_image %}
+                            <img src="{{ url_for('static', filename='pictures/' + profile_user.profile_image) }}" 
+                                 class="rounded-circle img-thumbnail mb-2" 
+                                 style="width: 120px; height: 120px; object-fit: cover;">
+                        {% else %}
+                            <div class="rounded-circle profile-avatar-placeholder text-white d-inline-flex align-items-center justify-content-center fw-bold fs-2 mb-2" 
+                                 style="width: 120px; height: 120px;">
+                                {{ profile_user.username[0]|upper }}
+                            </div>
+                        {% endif %}
+                        <h4 class="mb-0">{{ profile_user.username }}</h4>
+                        <p class="text-muted small">{{ profile_user.email }}</p>
+                    {% endif %}
+                </div>
+
+                {% if is_own_profile %}
+                
+                    <hr>
+                    <h5 class="mb-3 fs-6 fw-bold">პროფილის განახლება</h5>
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="mb-3">
+                            {{ form.username.label(class="form-label small fw-bold") }}
+                            {{ form.username(class="form-control") }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.email.label(class="form-label small fw-bold") }}
+                            {{ form.email(class="form-control") }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form.picture.label(class="form-label small fw-bold") }}
+                            {{ form.picture(class="form-control") }}
+                        </div>
+
+                        {{ form.submit(class="btn btn-brown w-100") }}
+                    </form>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <!-- მარჯვენა მხარე-  დამატებული ღონისძიებები -->
+        <div class="{% if is_own_profile %}col-md-7{% else %}col-md-8{% endif %}">
+            <h4 class="mb-4">
+                {% if is_own_profile %}
+                    ჩემი დამატებული ღონისძიებები
+                {% else %}
+                    {{ profile_user.username }}-ის მიერ დამატებული ღონისძიებები
+                {% endif %}
+            </h4>
+
+            <div class="row g-3">
+                {% for event in user_events %}
+                    <div class="col-12 col-lg-6">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <h5 class="card-title fw-bold fs-6">{{ event.title }}</h5>
+                                    <p class="card-text text-muted small mb-1">📍 {{ event.location }}</p>
+                                    <p class="card-text small mb-3">📅 {{ event.event_date.strftime('%Y-%m-%d %H:%M') }}</p>
+                                </div>
+                                <a href="{{ url_for('event_detail', event_id=event.id) }}" class="btn btn-brown w-100 btn-sm">მეტის წაკითხვა</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-12">
+                        <p class="text-muted">ღონისძიებები ჯერ არ არის დამატებული.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
