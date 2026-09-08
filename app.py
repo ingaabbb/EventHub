@@ -303,20 +303,21 @@ def internal_server_error(e):
 
 
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
+with app.app_context():
+    db.create_all()
+    if not Category.query.first():
+        default_categories = [
+            Category(name='კონცერტი'),
+            Category(name='სპორტი'),
+            Category(name='განათლება'),
+            Category(name='თეატრი'),
+            Category(name='კინო'),
+            Category(name='კონფერენცია'),
+            Category(name='სხვა')
+        ]
+        db.session.add_all(default_categories)
+        db.session.commit()
 
-        if not Category.query.first():
-            default_categories = [
-                Category(name='კონცერტი'),
-                Category(name='სპორტი'),
-                Category(name='განათლება'),
-                Category(name='თეატრი'),
-                Category(name='კინო'),
-                Category(name='კონფერენცია'),
-                Category(name='სხვა')
-            ]
-            db.session.add_all(default_categories)
-            db.session.commit()
+
+if __name__ == '__main__':
     app.run(debug=True)
